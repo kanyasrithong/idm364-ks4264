@@ -1,0 +1,10 @@
+	@font-face {
+			font-family: Satoshi;
+			src: url('$lib/assets/fonts/Satoshi-Variable.ttf');
+		}
+  
+  * {
+     font-family: Satoshi;
+     font-weight: 800;
+     margin: 0;
+	}

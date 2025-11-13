@@ -1,5 +1,5 @@
 <script lang="js">
-  import ShoppingBag from "$lib/ShoppingBag.svelte";
+  import ShoppingBag from "$lib/components/ShoppingBag.svelte";
 </script>
 
 <div id="header">

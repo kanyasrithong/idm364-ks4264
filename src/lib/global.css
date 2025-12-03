@@ -4,7 +4,10 @@
 		}
   
   * {
+		box-sizing: border-box;
      font-family: Satoshi;
-     font-weight: 800;
+     font-weight: 400;
      margin: 0;
+
+		 --header-height: 80px;
 	}

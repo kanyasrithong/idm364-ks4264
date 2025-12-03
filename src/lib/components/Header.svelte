@@ -14,11 +14,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    background-color: white;
     padding: 1rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1001;
 
     a {
       color: black;
-      font-family: Satoshi;
+      font-weight: 800;
       font-size: 24px;
       text-decoration: none;
     }

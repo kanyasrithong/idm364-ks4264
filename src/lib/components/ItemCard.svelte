@@ -1,13 +1,15 @@
 <script lang="js">
-  import angelWings from "$lib/assets/images/angel-wings.png";
+  let { title, primaryImage, secondaryImage } = $props();
 </script>
 
-<div>
-  <h2>Angel Wings</h2>
-  <img src={angelWings} alt="">
-  <img src="" alt="">
-  <h1>$111</h1>
-</div>
+<a href="/products/{title}">
+  <div>
+    <h2>{title}</h2>
+    <img id="primary-image" src={primaryImage} alt="">
+    <img id="secondary-image" class="hidden" src={secondaryImage} alt="">
+    <h1>$111</h1>
+  </div>
+</a>
 
 <style>
   div {
@@ -44,5 +46,13 @@
     margin: 0 auto;
     height: 100%;
     width: 100%;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .show {
+    display: block;
   }
 </style>

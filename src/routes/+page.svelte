@@ -1,19 +1,18 @@
 <script>
 	import ItemCard from "$lib/components/ItemCard.svelte";
 
+  let { data } = $props();
+  $inspect(data);
 </script>
 
 <div>
-  <ItemCard/>
-  <ItemCard/>
-  <ItemCard/>
-  <ItemCard/>
-  <ItemCard/>
-  <ItemCard/>
-  <ItemCard/>
-  <ItemCard/>
-  <ItemCard/>
-  <ItemCard/>
+  {#each data.products as product}
+    <ItemCard
+      title={product.item_name}
+      primaryImage={product.item_image}
+      secondaryImage={product.item_image_back}
+    />
+  {/each}
 </div>
 
 <style>

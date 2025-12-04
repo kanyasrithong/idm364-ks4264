@@ -1,4 +1,5 @@
 <script>
+	import { createClient } from '@supabase/supabase-js'
 	import favicon from '$lib/assets/favicon.svg';
 	import Header from "$lib/components/Header.svelte";
 	import '$lib/global.css';

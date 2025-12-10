@@ -1,8 +1,8 @@
 <script lang="js">
-  let { title, primaryImage, secondaryImage } = $props();
+  let { title, primaryImage, secondaryImage, urlPath } = $props();
 </script>
 
-<a href="/products/{title}">
+<a href="/products/{urlPath}">
   <div>
     <h2>{title}</h2>
     <img id="primary-image" src={primaryImage} alt="">
@@ -12,7 +12,10 @@
 </a>
 
 <style>
-  div {
+  a {
+    text-decoration: none;
+
+    div {
     display: flex;
     flex-direction: column;
 
@@ -54,5 +57,6 @@
 
   .show {
     display: block;
+  }
   }
 </style>

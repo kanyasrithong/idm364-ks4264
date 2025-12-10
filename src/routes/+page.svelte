@@ -11,6 +11,7 @@
       title={product.item_name}
       primaryImage={product.item_image}
       secondaryImage={product.item_image_back}
+      urlPath={product.item_url}
     />
   {/each}
 </div>
@@ -25,4 +26,3 @@
     width: 100vw;
   }
 </style>
-

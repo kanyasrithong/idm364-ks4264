@@ -1,8 +1,6 @@
 <script>
 	import ItemCard from "$lib/components/ItemCard.svelte";
-
   let { data } = $props();
-  $inspect(data);
 </script>
 
 <div>
@@ -11,7 +9,8 @@
       title={product.item_name}
       primaryImage={product.item_image}
       secondaryImage={product.item_image_back}
-      urlPath={product.item_url}
+      urlPath={product.item_slug}
+      price={product.item_price}
     />
   {/each}
 </div>

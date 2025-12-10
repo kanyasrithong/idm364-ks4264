@@ -1,8 +1,13 @@
 <script>
 	import ItemCard from '$lib/components/ItemCard.svelte';
-  import post from '$lib/server/posts';
+  let { product } = $props();
 </script>
 
 <ItemCard
-  
+  primaryImage={product.item_image}
+  secondaryImage={product.item_image_back}
 />
+
+<div>
+  <h1>hello</h1>
+</div>

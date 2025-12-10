@@ -1,11 +1,14 @@
-import { error } from '@sveltejs/kit';
-import getPostFromDatabase from '$lib/server/posts';
+import { PUBLIC_SUPABASE_TABLE_ } from '$env/static/public';
+import { supabase } from '$lib/server/supabase-client';
 
 export async function load({ params }) {
-  const post = await getPostFromDatabase(params.slug)
-    if (post) {
-      return post;
-    }
+  const { data: product, error: productError } = await supabase
+    .from(PUBLIC_SUPABASE_TABLE_)
+    .select('*')
+    .eq('item_slug', params.slug)
+    .single();
+  
+    if (productError) throw productError;
 
-  throw error(404, 'Not found');
+    return { product };
 }

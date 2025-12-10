@@ -1,7 +1,10 @@
 <script>
-	import ItemCard from '$lib/components/ItemCard.svelte';
   import AddToCart from '$lib/components/AddToCart.svelte';
+	import ItemCard from '$lib/components/ItemCard.svelte';
+  import QuantityCounter from '$lib/components/QuantityCounter.svelte';
+
   let { data } = $props();
+  let itemQuantity = $state(1);
 </script>
 
 <main>
@@ -13,7 +16,13 @@
     <h1>{data.product.item_name}</h1>
     <h2>${data.product.item_price}</h2>
     <p>{data.product.item_description}</p>
-    <AddToCart/>
+    <QuantityCounter
+      quantity={itemQuantity}
+    />
+    <AddToCart
+      product={data.product}
+      quantity={itemQuantity}
+    />
   </div>
 </main>
 

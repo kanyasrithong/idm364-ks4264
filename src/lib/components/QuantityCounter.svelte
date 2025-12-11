@@ -1,18 +1,28 @@
 <script>
-  import { cart } from '$lib/stores/stores';
+  import { updateQuantity } from '$lib/stores/stores';
 
-  let {quantity} = $props();
+  let { quantity = 1, id, onChange } = $props();
+  let localQuantity = $state(quantity);
 </script>
 
 <div>
   <button onclick={() => {
-    quantity > 0 && quantity--
+      if (localQuantity > 1) localQuantity--;
+      if (id) updateQuantity(id, localQuantity);
+      onChange?.(localQuantity);
     }}>
-    -</button>
+    -
+  </button>
   <h3 id="quantity">
-    {quantity}
+    {localQuantity}
   </h3>
-  <button onclick={() => quantity++}>+</button>
+  <button onclick={() => {
+      if (localQuantity < 99) localQuantity++;
+      if (id) updateQuantity(id, localQuantity);
+      onChange?.(localQuantity);
+    }}>
+    +
+  </button>
 </div>
 
 <style>

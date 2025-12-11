@@ -1,7 +1,7 @@
 <script>
   import { cart } from '$lib/stores/stores'
   import QuantityCounter from './QuantityCounter.svelte';
-  let { image, title, price, quantity } = $props();
+  let { id, image, title, price, quantity } = $props();
 </script>
 
 <div id="product-card">
@@ -9,9 +9,7 @@
   <div id="product-details">
     <h2>{title}</h2>
     <h3>${price}</h3>
-    <QuantityCounter
-      quantity={quantity}
-    />
+    <QuantityCounter id={id} quantity={quantity}/>
   </div>
 </div>
 

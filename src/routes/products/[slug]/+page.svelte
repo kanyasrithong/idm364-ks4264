@@ -5,6 +5,10 @@
 
   let { data } = $props();
   let itemQuantity = $state(1);
+
+  function handleChange(newQuantity) {
+    itemQuantity = newQuantity;
+  }
 </script>
 
 <main>
@@ -16,9 +20,9 @@
     <h1>{data.product.item_name}</h1>
     <h2>${data.product.item_price}</h2>
     <p>{data.product.item_description}</p>
-    <QuantityCounter
-      quantity={itemQuantity}
-    />
+    <QuantityCounter 
+    quantity={itemQuantity}
+    onChange={handleChange}/>
     <AddToCart
       product={data.product}
       quantity={itemQuantity}

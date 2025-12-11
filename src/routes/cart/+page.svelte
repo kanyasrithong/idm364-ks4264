@@ -13,6 +13,7 @@
     <div id="cart-items">
       {#each cartItems as item}
       <CartItem
+        id={item.id}
         image={item.image}
         title={item.name}
         price={item.price}

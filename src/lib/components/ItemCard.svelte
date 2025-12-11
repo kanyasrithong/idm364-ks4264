@@ -5,8 +5,8 @@
 <a href="/products/{urlPath}">
   <div>
     <h2>{title}</h2>
-    <img id="primary-image" src={primaryImage} alt="">
-    <img id="secondary-image" class="hidden" src={secondaryImage} alt="">
+    <img id="primary-image" src={primaryImage} alt="{title}">
+    <img id="secondary-image" class="hidden" src={secondaryImage} alt="{title} from the back">
     {#if price}
       <h1>${price}</h1>
     {/if}

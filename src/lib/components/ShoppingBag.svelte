@@ -2,7 +2,7 @@
   import shoppingBag from '$lib/assets/icons/shopping-bag.svg'
 </script>
 
-<a href="/">
+<a href="/cart">
   <img src={shoppingBag} alt="Shopping bag icon">
   <span>1</span>
 </a>

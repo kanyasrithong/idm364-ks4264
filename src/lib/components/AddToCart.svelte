@@ -1,13 +1,16 @@
 <script>
-  import { cart } from "$lib/stores/stores";
+  import { cart, addToCart } from "$lib/stores/stores";
   let { product, quantity = 1} = $props();
 
-  function add (product) {
-    cart.addItem(product, quantity)
+  function add () {
+    if (!product) return;
+
+    console.log("Adding product:", product);
+    addToCart(product, quantity)
   }
 </script>
 
-<button onclick={() => add(product)}>Add to Cart</button>
+<button onclick={() => add()}>Add to Cart</button>
 
 <style>
   button {

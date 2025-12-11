@@ -1,59 +1,72 @@
 import { writable, derived } from "svelte/store";
 
-function createCartStore() {
-  const { subscribe, set, update } = writable([]);
-
-  return {
-    subscribe,
+let initialCart = [];
+if (typeof window !== "undefined") {
+  try {
+    const saved = localStorage.getItem("cart");
+    initialCart = saved ? JSON.parse(saved) : [];
     
-    addItem: (product, quantity) => {
-      update(cart => {
-        const existingItem = cart.find(item => item.id === product.id);
-        
-        if (existingItem) {
-          return cart.map(item =>
-            item.id === product.id
-            ? {...item, quantity: item.quantity + 1}
-            : item
-          )
-        } else {
-          return [...cart, {
-            id: product.id,
-            name: product.item_name,
-            price: product.item_price,
-            image: product.item_image,
-            quantity,
-          }];
-        }
-      });
-    },
-
-    removeItem: (productId) => {
-      update((cart) => cart.filter(item => item.id !== productId));
-    },
-    
-    updateQuantity: (productId, quantity) => {
-      update(cart => {
-        const existingItem = cart.find(item => item.id === productId);
-        if (!existingItem) return cart;
-
-        if (quantity <= 0) {
-          return cart.filter((item) => item.id !== productId)
-        }
-
-        return cart.map(item =>
-          item.id === productId
-          ? { ...item, quantity }
-          : item
-        )
-      });
-    },
-    
-    clearCart: () => set([])
+    if (!Array.isArray(initialCart)) {
+      initialCart = [];
+    }
+  } catch (e) {
+    console.error("Failed to load cart:", e);
+    initialCart = [];
   }
 }
 
-export const cart = createCartStore();
+export const cart = writable(initialCart);
+
+if (typeof window !== "undefined") {
+  cart.subscribe((items) => {
+    localStorage.setItem("cart", JSON.stringify(items));
+  });
+}
+
+export function addToCart (product, quantity) {
+  cart.update((currentCart) => {
+    const existingItem = currentCart.find(item => item.id === product.id);
+    
+    if (existingItem) {
+      return currentCart.map(item =>
+        item.id === product.id
+        ? {...item, quantity: item.quantity + quantity}
+        : item
+      )
+    } else {
+      return [...currentCart, {
+        id: product.id,
+        name: product.item_name,
+        price: product.item_price,
+        image: product.item_image,
+        quantity,
+      }];
+    }
+  });
+};
+
+export function removeFromCart (productId) {
+  cart.update((currentCart) => currentCart.filter(item => item.id !== productId));
+};
+
+export function updateQuantity (productId, quantity) {
+  cart.update((currentCart) => {
+    const existingItem = currentCart.find(item => item.id === productId);
+    if (!existingItem) return currentCart;
+
+    if (quantity <= 0) {
+      return currentCart.filter((item) => item.id !== productId)
+    }
+
+    return currentCart.map(item =>
+      item.id === productId
+      ? { ...item, quantity }
+      : item
+    )
+  });
+};
+
+export function clearCart () {cart.set([])};
 
 export const cartTotal = derived(
   cart,

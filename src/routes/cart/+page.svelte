@@ -27,10 +27,6 @@
       <h3>Subtotal</h3>
       <h3>${subtotal}</h3>
     </div>
-    <div class="summary-section">
-      <h3>Subtotal</h3>
-      <h3>${subtotal}</h3>
-    </div>
   </div>
 </main>
 

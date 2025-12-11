@@ -3,7 +3,7 @@
   let { data } = $props();
 </script>
 
-<div>
+<main>
   {#each data.products as product}
     <ItemCard
       title={product.item_name}
@@ -13,10 +13,10 @@
       price={product.item_price}
     />
   {/each}
-</div>
+</main>
 
 <style>
-  div {
+  main {
     box-sizing: border-box;
     display: grid;
     grid: repeat(4, auto) / repeat(3, minmax(0,1fr));
